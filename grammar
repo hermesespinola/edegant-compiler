@@ -1,0 +1,26 @@
+<data-type> ::= "logico" | "real" | "entero"
+<exp> ::= <bool-exp> | <math-exp> | <str-exp>
+<bool-exp> ::= "verdadero" | "falso" | <id> | <comp-exp> | "!" <bool-exp> | "(" <bool-exp> ")" | <bool-exp> "&" <bool-exp> | <bool-exp> "|" <bool-exp>
+<num> ::= <id> | <real> | <entero>
+<comp-exp> ::= <num> "<" <num> | <num> "<=" <num> | <num> ">" <num> | <num> ">=" <num> | <num> "==" <num>
+<op> ::= "+" | "-" | "/" | "*" | "^"
+<num-exp> ::= <num> | (num-exp) | <num-exp> <op> <num-exp>
+
+<declaracion> ::= <data-type> <id> ";" <EOL>
+<declaraciones> ::= <declaracion> | <declaracion> <declaraciones>
+<asignacion> ::= <id> "=" <exp> ";" <EOL>
+<si> :== "si(" <id> "){" <lineas> "}" <EOL>
+<mientras> :== "mientras(" <id> "){" <lineas> "}" <EOL>
+
+<sentencia> ::= <asignacion> | <si> | <mientras>
+<sentencias> ::= <sentencia> | <sentencia> <sentencias>
+
+<args-opt> ::= <args> | ""
+<args> ::= <arg> | <arg> "," <args>
+<arg> ::= <data-type> <id>
+<fun> ::= <data-type> <id> "(" <args-opt> "){" <declaraciones> <sentencias> "regresa " <id> ";}"
+<fun-block-opt> ::= <fun-block> | ""
+<fun-block> ::= <fun> | <fun> <fun-block>
+
+<principal> ::= "principal(){" <declaraciones> <sentencias> "}"
+<archivo> ::= <fun-block-opt><principal>
