@@ -40,7 +40,7 @@ initialNode = Node([
 
 def lexException(line: str, lineno: int, col: int):
     import re
-    msg = "alv en linea {}, columna {}:\n{}{}" \
+    msg = "token no esperado en linea {}, columna {}:\n{}{}" \
         .format(lineno, col, line, re.sub(r'[^\s]', ' ', line[:col]) + '^')
     print(msg)
     exit()
