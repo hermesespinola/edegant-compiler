@@ -58,6 +58,8 @@ def tokenize(line: str, lineno: int, symtable: SymbolTable):
     tokens = []
     value = ''
     for col, char in enumerate(line):
+        if current is None:
+            lexException(line, lineno, col-1)
         if current is initialNode and char in WHITE:
             continue
         nxt = current.move(char)
