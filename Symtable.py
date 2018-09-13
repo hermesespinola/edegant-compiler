@@ -1,21 +1,24 @@
-import keywords
+from keywords import __all__
 from Symbol import Sym, ID
-from pprint import pprint
 
 class SymbolTable(object):
-    def __init__(self, filename: str):
-        self.filename = filename
+    def __init__(self, name: str):
+        self.name = name
         self.identifiers = {}
 
-    def lookup(self, value):
+    def lookup(self, value: str):
         tkn = self.identifiers.get(value)
         if tkn is not None:
             return tkn
-        kwd = keywords.__all__.get(value)
+        kwd = __all__.get(value)
         if kwd is not None:
             return kwd
         new_tkn = self.identifiers[value] = Sym(ID, value)
         return new_tkn
+    
+    def contains(self, value: str):
+        tkn = self.identifiers.get(value)
+        return tkn is not None
 
     def get_identifiers(self):
         return self.identifiers.keys()
@@ -27,4 +30,4 @@ class SymbolTable(object):
         print(self.identifiers)
     
     def __repr__(self):
-        return self.filename + 'symtable: ' + self.identifiers.__str__()
+        return self.name + ' symtable: ' + self.identifiers.__str__()

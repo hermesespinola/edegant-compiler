@@ -3,7 +3,7 @@ entero func1(logico l1, real r1) {
 	logico e2;
 	
 	a = ((e1 + e2) - e3) / func1() ^ 3;
-	b = 4 > 4;	
+	b = 4 > 4.3;
 	b = b == c;
 	b = b | c;
 	
@@ -38,5 +38,5 @@ principal() {
 	logico e2;
 	entero e2;
 	
-	resultado = fun()1 + fun2();
+	resultado = fun(e1, e2, e2) + fun2();
 }

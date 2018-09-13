@@ -49,7 +49,6 @@ def lstrip(string):
     i = 0
     stripped = { '\t': 0, ' ': 0, '\r': 0, '\n': 0 }
     while len(string) < i and string[i] in WHITE:
-        print(string[i])
         stripped[string[i]] += 1
         i += 1
     return string[i:], stripped, i
@@ -75,5 +74,10 @@ def tokenize(line: str, lineno: int, symtable: SymbolTable):
             value = '' if char in WHITE else char
         else:
             lexException(line, lineno, col)
-            
+    if current.is_final:
+        if current is intNode or current is floatNode:
+            tokens.append(Token(Sym(NUM, value), lineno, col))
+        else:
+            symbol = symtable.lookup(value)
+            tokens.append(Token(symbol, lineno, col))
     return tokens

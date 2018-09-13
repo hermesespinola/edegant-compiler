@@ -1,0 +1,45 @@
+<file> ::= {<function>} <principal>
+
+<principal> ::= principal '(' ')' '{' {<declaraciones>} {<statement>} '}'
+
+<statement> ::= <if> | <while> | <assignment>
+
+<function> ::= <data-type> ID '(' {<arguments>} ')' '{' <block> regresa ID ';' '}'
+
+<data-type> ::= real | entero | logico
+
+<arguments> ::= <argument> | <argument> ',' <arguments>
+
+<argument> ::= <data-type> ID
+
+<block> ::= {<declaraciones>} {<statement>}
+
+<declaraciones> ::= <data-type> ID ';'
+
+<if> ::= si '(' ID ')' '{' {<statement>} '}'
+
+<while> ::= mientras '(' ID ')' '{' {<statement>} '}'
+
+<assignment> ::= ID '=' <expresion> ';'
+
+<expresion> ::= <arithmenthic-expr> | <bool-expr> | <relational-expr> | <not-expr>
+
+<arithmenthic-expr> ::= '(' <arithmenthic-expr> ')' | <value> | <arithmenthic-expr> | <arithmenthic-expr> <arithmetic-op> <arithmenthic-expr>
+
+<arithmetic-op> ::= '*' | '+' | '/' | '^' | '-'
+
+<value> ::= ID | ENTERO | REAL | <func-call>
+
+<func-call> ::= ID '(' [<func-args>] ')'
+
+<func-args> ::= ID | ID ',' <func-args>
+
+<bool-expr> ::= '(' <bool-expr> ')' | <bool-value> | <bool-expr> | <bool-expr> <operador_logico> <bool-expr>
+
+<operador_logico> ::= '|' | '&'
+
+<bool-value> ::= ID | LOGICO | <func-call>
+
+<relational-expr> ::= <value> <relational-op> <value>
+
+<relational-op> ::= '<' | '>' | '=='
